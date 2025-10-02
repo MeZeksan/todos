@@ -1,0 +1,1 @@
+print("Hello, My name is Bulat Zakirov IVT-432b!")
