@@ -1,0 +1,130 @@
+{% extends "home.html" %}
+{% block todo_container %}
+<style>
+    .container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        backdrop-filter: blur(10px);
+        margin: 20px auto;
+        max-width: 800px;
+    }
+    
+    .form-control {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 12px 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    
+    .btn-outline-primary {
+        border: 2px solid #667eea;
+        color: #667eea;
+        border-radius: 8px;
+        padding: 12px 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-outline-primary:hover {
+        background: #667eea;
+        border-color: #667eea;
+        color: white;
+        transform: translateY(-1px);
+    }
+    
+    .card {
+        background: white;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin: 15px 0;
+    }
+    
+    .list-group-item {
+        border: none;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .list-group-item:hover {
+        background: #f8f9ff;
+        transform: translateX(5px);
+    }
+    
+    .list-group-item a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    
+    .list-group-item a:hover {
+        color: #764ba2;
+    }
+    
+    h2 {
+        color: #333;
+        font-weight: 300;
+        margin-bottom: 20px;
+    }
+    
+    h4 {
+        color: #667eea;
+        font-weight: 500;
+    }
+</style>
+
+<main class="container">
+<hr>
+<section class="container-fluid">
+<form method="post">
+<div class="col-auto">
+<div class="input-group mb-3">
+<input type="text" name="item"
+value="{{ item }}" class="form-control" placeholder="Purchase
+Packt's Python workshop course"
+aria-label="Add a todo"
+aria-describedby="button-addon2" />
+<button class="btn btn-outline-primary" type="submit" id=
+"button-addon2" data-mdb-ripple-color="dark">
+Add Todo
+</button>
+</div>
+</div>
+</form>
+</section>
+{% if todo %}
+<article class="card container-fluid">
+<br/>
+<h4>Todo ID: {{ todo.id }} </h4>
+<p>
+<strong>
+Item: {{ todo.item }}
+</strong>
+</p>
+</article>
+{% else %}
+<section class="container-fluid">
+<h2 align="center">Todos</h2>
+<br>
+<div class="card">
+<ul class="list-group list-group-flush">
+{% for todo in todos %}
+<li class="list-group-item">
+{{ loop.index }}. <a href=
+"/todo/{{loop.index}}"> {{
+todo.item }} </a>
+</li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+</section>
+</main>
+{% endblock %}
