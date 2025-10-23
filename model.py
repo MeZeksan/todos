@@ -1,7 +1,15 @@
 from pydantic import BaseModel
+from typing import List, Optional
+
 class Todo(BaseModel):
     id: int
     item: str
+    @classmethod
+    def as_form(
+        cls,
+        item: str = Form(...)
+    ):
+        return cls(item=item)
 
     class Config:
         Schema_extra = {
